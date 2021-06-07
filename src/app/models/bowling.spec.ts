@@ -5,7 +5,7 @@ describe('Bowling', () => {
     expect(new Bowling()).toBeTruthy();
   });
 
-  /*it('should return 0 if never scored', () => {
+  it('should return 0 if never scored', () => {
     const bowlingGame = new Bowling();
     expect(bowlingGame.getScore()).toEqual(0);
   });
@@ -30,7 +30,6 @@ describe('Bowling', () => {
 
     expect(bowlingGame.getScore()).toEqual(18);
   });
-*/
   it('should return 26 if strike scored', () => {
     const bowlingGame = new Bowling();
 

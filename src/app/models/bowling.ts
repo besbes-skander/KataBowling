@@ -12,7 +12,7 @@ export class Bowling {
 
       score += frameScore;
 
-      if (this.rolls[frame] === 10) {
+      if (this.isStrike(frame)) {
         score += this.rolls[frame + 2] + this.rolls[frame + 3];
       }
       if (this.isSpare(frame)) {
@@ -21,6 +21,10 @@ export class Bowling {
 
     }
     return score;
+  }
+
+  private isStrike(frame: number) {
+    return this.rolls[frame] === 10;
   }
 
   private isSpare(frame: number): boolean {
