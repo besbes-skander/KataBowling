@@ -57,20 +57,6 @@ describe('Bowling', () => {
     expect(bowlingGame.getScore()).toEqual(45);
   });
 
-  it('should return 300 for a perfect game', () => {
-    const bowlingGame = new Bowling();
-
-    for (let frame = 0; frame < 18; frame++) {
-      bowlingGame.score(frame, 1);
-    }
-
-    bowlingGame.score(18, 10);
-    bowlingGame.score(19, 0);
-    bowlingGame.score(20, 5);
-
-    expect(bowlingGame.getScore()).toEqual(33);
-  });
-  
   it('should return 33 when strike at last frame', () => {
     const bowlingGame = new Bowling();
 
@@ -79,9 +65,21 @@ describe('Bowling', () => {
     }
 
     bowlingGame.score(18, 10);
-    bowlingGame.score(19, 0);
     bowlingGame.score(20, 5);
+    bowlingGame.score(21, 5);
 
-    expect(bowlingGame.getScore()).toEqual(33);
+    expect(bowlingGame.getScore()).toEqual(38);
+  });
+
+  it('should return 300 for a perfect game', () => {
+    const bowlingGame = new Bowling();
+
+    for (let frame = 0; frame < 20; frame += 2) {
+      bowlingGame.score(frame, 10);
+    }
+    bowlingGame.score(20, 10);
+    bowlingGame.score(21, 10);
+
+    expect(bowlingGame.getScore()).toEqual(300);
   });
 });
