@@ -12,9 +12,13 @@ export class Bowling {
 
       score += frameScore;
 
+      if (this.rolls[frame] === 10) {
+        score += this.rolls[frame + 2] + this.rolls[frame + 3];
+      }
       if (this.isSpare(frame)) {
         score += this.rolls[frame + 2];
       }
+
     }
     return score;
   }
