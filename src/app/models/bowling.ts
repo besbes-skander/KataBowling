@@ -9,13 +9,18 @@ export class Bowling {
     let score = 0;
     for (let frame = 0; frame < 20; frame += 2) {
       const frameScore = this.rolls[frame] + this.rolls[frame + 1];
+
       score += frameScore;
 
-      if (frameScore === 10 && this.rolls[frame] !== 10 && this.rolls[frame + 1] !== 10) {
-        score += this.rolls[frame + 2]
+      if (this.isSpare(frame)) {
+        score += this.rolls[frame + 2];
       }
     }
     return score;
+  }
+
+  private isSpare(frame: number): boolean {
+    return (this.rolls[frame] + this.rolls[frame + 1]) === 10 && this.rolls[frame] !== 10;
   }
 
   score(frame: number, points: number) {
