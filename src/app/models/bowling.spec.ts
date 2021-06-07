@@ -19,4 +19,15 @@ describe('Bowling', () => {
 
     expect(bowlingGame.getScore()).toEqual(20);
   });
+
+  it('should return 18 if spare scored', () => {
+    const bowlingGame = new Bowling();
+
+    bowlingGame.score(0, 5);
+    bowlingGame.score(1, 5);
+    bowlingGame.score(2, 4);
+    bowlingGame.score(3, 0);
+
+    expect(bowlingGame.getScore()).toEqual(18);
+  });
 });

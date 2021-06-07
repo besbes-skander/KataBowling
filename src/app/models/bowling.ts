@@ -7,8 +7,13 @@ export class Bowling {
 
   getScore() {
     let score = 0;
-    for (let roll = 0; roll < 21; roll++) {
-      score += this.rolls[roll];
+    for (let frame = 0; frame < 20; frame += 2) {
+      const frameScore = this.rolls[frame] + this.rolls[frame + 1];
+      score += frameScore;
+
+      if (frameScore === 10 && this.rolls[frame] !== 10 && this.rolls[frame + 1] !== 10) {
+        score += this.rolls[frame + 2]
+      }
     }
     return score;
   }
