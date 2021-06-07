@@ -7,31 +7,39 @@ export class Bowling {
 
   getScore() {
     let score = 0;
-    for (let frame = 0; frame < 20; frame += 2) {
-      const frameScore = this.rolls[frame] + this.rolls[frame + 1];
+    for (let frameIndex = 0; frameIndex < 20; frameIndex += 2) {
+      const frameScore = this.rolls[frameIndex] + this.rolls[frameIndex + 1];
 
       score += frameScore;
 
-      if (this.isStrike(frame)) {
-        score += this.rolls[frame + 2] + this.rolls[frame + 3];
+      if (this.isStrike(frameIndex)) {
+        score = this.getStrikePoints(frameIndex, score);
       }
-      if (this.isSpare(frame)) {
-        score += this.rolls[frame + 2];
+      if (this.isSpare(frameIndex)) {
+        score += this.rolls[frameIndex + 2];
       }
-
     }
     return score;
   }
 
-  private isStrike(frame: number) {
-    return this.rolls[frame] === 10;
+  private getStrikePoints(frameIndex: number, score: number) {
+    if (!this.isStrike(frameIndex + 2)) {
+      score += this.rolls[frameIndex + 2] + this.rolls[frameIndex + 3];
+    } else {
+      score += this.rolls[frameIndex + 2] + this.rolls[frameIndex + 4];
+    }
+    return score;
   }
 
-  private isSpare(frame: number): boolean {
-    return (this.rolls[frame] + this.rolls[frame + 1]) === 10 && this.rolls[frame] !== 10;
+  private isStrike(frameIndex: number) {
+    return this.rolls[frameIndex] === 10;
   }
 
-  score(frame: number, points: number) {
-    this.rolls[frame] = points;
+  private isSpare(frameIndex: number): boolean {
+    return (this.rolls[frameIndex] + this.rolls[frameIndex + 1]) === 10 && this.rolls[frameIndex] !== 10;
+  }
+
+  score(frameIndex: number, points: number) {
+    this.rolls[frameIndex] = points;
   }
 }

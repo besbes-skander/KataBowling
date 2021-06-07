@@ -30,6 +30,7 @@ describe('Bowling', () => {
 
     expect(bowlingGame.getScore()).toEqual(18);
   });
+
   it('should return 26 if strike scored', () => {
     const bowlingGame = new Bowling();
 
@@ -39,5 +40,20 @@ describe('Bowling', () => {
     bowlingGame.score(3, 4);
 
     expect(bowlingGame.getScore()).toEqual(26);
+  });
+
+  it('should return 45 if two strikes in a row scored', () => {
+    const bowlingGame = new Bowling();
+
+    bowlingGame.score(0, 10);
+    bowlingGame.score(1, 0);
+    bowlingGame.score(2, 10);
+    bowlingGame.score(3, 0);
+    bowlingGame.score(4, 5);
+    bowlingGame.score(5, 0);
+    bowlingGame.score(6, 0);
+    bowlingGame.score(7, 0);
+
+    expect(bowlingGame.getScore()).toEqual(45);
   });
 });
