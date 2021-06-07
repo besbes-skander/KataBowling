@@ -70,4 +70,18 @@ describe('Bowling', () => {
 
     expect(bowlingGame.getScore()).toEqual(33);
   });
+  
+  it('should return 33 when strike at last frame', () => {
+    const bowlingGame = new Bowling();
+
+    for (let frame = 0; frame < 18; frame++) {
+      bowlingGame.score(frame, 1);
+    }
+
+    bowlingGame.score(18, 10);
+    bowlingGame.score(19, 0);
+    bowlingGame.score(20, 5);
+
+    expect(bowlingGame.getScore()).toEqual(33);
+  });
 });
