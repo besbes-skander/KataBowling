@@ -13,7 +13,7 @@ export class Bowling {
       score += frameScore;
 
       if (this.isStrike(frameIndex)) {
-        score = this.getStrikePoints(frameIndex, score);
+        score += this.getStrikePoints(frameIndex);
       }
       if (this.isSpare(frameIndex)) {
         score += this.rolls[frameIndex + 2];
@@ -22,13 +22,15 @@ export class Bowling {
     return score;
   }
 
-  private getStrikePoints(frameIndex: number, score: number) {
-    if (!this.isStrike(frameIndex + 2)) {
-      score += this.rolls[frameIndex + 2] + this.rolls[frameIndex + 3];
-    } else {
-      score += this.rolls[frameIndex + 2] + this.rolls[frameIndex + 4];
+  private getStrikePoints(frameIndex: number) {
+    if(frameIndex === 18) {
+      return this.rolls[frameIndex + 2];
     }
-    return score;
+    if (!this.isStrike(frameIndex + 2)) {
+      return this.rolls[frameIndex + 2] + this.rolls[frameIndex + 3];
+    } else {
+      return this.rolls[frameIndex + 2] + this.rolls[frameIndex + 4];
+    }
   }
 
   private isStrike(frameIndex: number) {
